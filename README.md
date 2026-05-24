@@ -248,6 +248,6 @@ See **[ATLAS_USAGE_GUIDE.md](ATLAS_USAGE_GUIDE.md)** for the complete walkthroug
 
 ----
 For access to the complete source-code of this project, reach out to me on Telegram:
-t.me/CyberSenal_bot
+https://t.me/CyberSenal_bot
  
 
