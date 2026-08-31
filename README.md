@@ -247,7 +247,7 @@ See **[ATLAS_USAGE_GUIDE.md](ATLAS_USAGE_GUIDE.md)** for the complete walkthroug
 *Built for analysts who need a local, self-contained CTI framework that actually correlates data — not just stores it.*
 
 ----
-For access to the complete source-code of this project, reach out to me on Telegram:
-https://t.me/xnor1
+For access to the complete source-code of this project, reach out to me on Twitter:
+https://x.com/1024cyber
  
 
