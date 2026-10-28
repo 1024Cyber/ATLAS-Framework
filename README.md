@@ -64,6 +64,7 @@ It runs entirely on `localhost:2077`. Everything stays on your machine.
 - **Analysis** — Threat actor registry with ATT&CK TTP mapping. One-click import of 700+ actors from MISP Galaxy. Campaign tracker with full correlation to IOCs.
 - **Documentation** — TLP-classified intelligence report builder (daily, weekly, flash alerts, actor profiles, executive summaries).
 - **IR & Vulnerability Management** — Incident tracker with timeline and status workflow. CVE register with auto CISA KEV check. Click any CVE for full NVD detail panel.
+- and more..
 
 ### Utilities
 - **Live Feeds** — Scheduled auto-pull from abuse.ch Feodo Tracker, URLhaus, CISA KEV, and OTX subscriptions (configurable interval, no API key needed for most).
@@ -72,6 +73,7 @@ It runs entirely on `localhost:2077`. Everything stays on your machine.
 - **PDF Report Generator** — Branded, multi-section executive PDF with section picker, TLP marking, auto-generated findings and recommendations.
 - **Import / Export** — Bulk CSV IOC import with enrichment, STIX 2.1 bundle export, Slack/email alerting for critical IOCs.
 - **Correlation Graph** — Force-directed graph showing all entity relationships. Nodes are IOCs, actors, campaigns, incidents, and vulnerabilities. Edges auto-build as you link data together.
+- and more...
 
 ---
 
@@ -119,6 +121,7 @@ Open **http://localhost:2077**
 | URLScan | urlscan.io | 100 scans/day | URL/domain page analysis |
 | CISA KEV | Public feed | No key needed | Known exploited CVEs |
 | abuse.ch feeds | Public | No key needed | C2 IPs, malicious URLs |
+| Twitter feeds | Public | Bearer Token needed |
 
 ---
 
@@ -132,6 +135,9 @@ SHODAN_API_KEY=your_key
 ABUSEIPDB_API_KEY=your_key
 GREYNOISE_API_KEY=your_key
 URLSCAN_API_KEY=your_key
+LIVE_X_BEARER_TOKEN=your_key
+LIVE_X_HANDLES=your_key
+LIVE_X_MONTHLY_BUDGET_USD=amount_here
 
 # MISP (optional)
 MISP_URL=https://your-misp.local
@@ -143,10 +149,22 @@ ALERT_SLACK_ENABLED=false
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/...
 ALERT_MIN_SEVERITY=critical
 
-# Feed schedule
+# ── Dark-web keyword monitoring (v0.2) ────────────────────────────────────────
+DARKWEB_ENABLED=true
+DARKWEB_INTERVAL_HOURS=12
+DARKWEB_SOURCES=ahmia,ransomware_live
+DARKWEB_DELAY_SEC=3
+DARKWEB_MAX_HITS_PER_SOURCE=25
+
+# ── Live feeds / IOC collection ───────────────────────────────────────────────
 FEED_ENABLED=true
-FEED_INTERVAL_HOURS=6
-```
+FEED_INTERVAL_HOURS=2             # how often ThreatFox, Feodo, URLhaus, OpenPhish, Emerging Threats, KEV (+OTX) are pulled
+ABUSECH_API_KEY=                  # FREE key from https://auth.abuse.ch/ — abuse.ch (ThreatFox, URLhaus, Feodo, MalwareBazaar)
+                                  # now expects it; without it those sources may be refused (the Auto-pull panel shows exactly why)
+
+# ── MITRE ATT&CK importer (actors, campaigns, technique list, Navigator) ──────
+ATTACK_CACHE_HOURS=24             # the ~55 MB ATT&CK data is cached (cache/attack_catalog.json) for this long
+#ATTACK_STIX_URL=                 # override only if you mirror the ATT&CK STIX data yourself
 
 ---
 
@@ -160,6 +178,11 @@ atlas/
 ├── .env.example
 ├── routers/
 │   ├── monitor.py             # IOC intake + enrichment
+│   ├── accounts.py         
+│   ├── investigation.py    
+│   ├── timeline.py  
+│   ├── investigations.py  
+│   ├── live_attacks.py         
 │   ├── analysis.py            # Actors, campaigns, TTPs
 │   ├── docs.py                # Reports, knowledge base
 │   ├── ir.py                  # Incidents, vulnerabilities
@@ -172,6 +195,12 @@ atlas/
 │   └── auth.py                # JWT auth, user management
 ├── services/
 │   ├── enrichment.py          # VT / OTX / Shodan / CISA KEV
+│   ├── alert.py  
+│   ├── attack.py
+│   ├── gate.py         
+│   ├── darkweb.py     
+│   ├── alert.py  
+│   ├── watchlist.py         
 │   ├── ioc_analysis.py        # AbuseIPDB / GreyNoise / URLScan
 │   ├── correlation.py         # Graph edge builder
 │   ├── navigator.py           # ATT&CK layer generator (v16)
@@ -245,16 +274,6 @@ Edges are created automatically when you:
 
 See **[ATLAS_USAGE_GUIDE.md](ATLAS_USAGE_GUIDE.md)** for the complete walkthrough covering every feature, daily workflow, and troubleshooting.
 
----
-
-## Roadmap
-
-- [ ] TAXII 2.1 server endpoint for automated feed sharing
-- [ ] Dark web keyword monitoring scheduler
-- [ ] IOC decay/expiry engine (auto-archive stale indicators)
-- [ ] Multi-user collaboration (shared notes, assignments)
-- [ ] Sigma rule export from observed TTPs
-- [ ] Docker compose setup
 
 ---
 
