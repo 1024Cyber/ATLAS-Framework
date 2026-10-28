@@ -45,7 +45,7 @@ It runs entirely on `localhost:2077`. Everything stays on your machine.
 |---|---|
 | ![Cyber Attacks](screenshots/cyber_attacks.png) | ![Dark Web Watch](screenshots/timeline.png) |
 
-| Live Threat Feeds
+| Live Threat Feeds |
 |---|---|
 | ![Cyber Attacks](screenshots/live_feeds.png) 
 
@@ -121,7 +121,7 @@ Open **http://localhost:2077**
 | URLScan | urlscan.io | 100 scans/day | URL/domain page analysis |
 | CISA KEV | Public feed | No key needed | Known exploited CVEs |
 | abuse.ch feeds | Public | No key needed | C2 IPs, malicious URLs |
-| Twitter feeds | Public | Bearer Token needed |
+| Twitter feeds | https://developer.x.com | Limited | Cyber Attacks related tweet from pages specified on the .env file
 
 ---
 
