@@ -22,19 +22,33 @@ It runs entirely on `localhost:2077`. Everything stays on your machine.
 
 | IOC Analysis | Threat Actors |
 |---|---|
-| ![IOC Analysis](screenshots/ioc_analysis.png) | ![Analysis](screenshots/analysis.png) |
+| ![IOC Analysis](screenshots/ioc_analysis.png) | ![Analysis](screenshots/threat_actors.png) |
 
 | IR & Vulnerability Management | Live Feeds |
 |---|---|
-| ![IR & Vuln](screenshots/ir_vuln.png) | ![Live Feeds](screenshots/live_feeds.png) |
+| ![IR & Vuln](screenshots/incidents.png) | ![Live Feeds](screenshots/vuln.png) |
 
 | ATT&CK Navigator Map | PDF Report Generator |
 |---|---|
-| ![ATT&CK Map](screenshots/attck_map.png) | ![PDF Report](screenshots/pdf_report.png) |
+| ![ATT&CK Map](screenshots/attck.png) | ![PDF Report](screenshots/pdf_report.png) |
 
 | Correlation Graph | Import / Export |
 |---|---|
 | ![Graph](screenshots/graph.png) | ![Import Export](screenshots/import_export.png) |
+
+| Investigation | Dark Web Watch |
+|---|---|
+| ![Investigation](screenshots/investigate.png) | ![Dark Web Watch](screenshots/dark-web.png) |
+
+
+| Live Cyber Attacks Feeds | Timeline |
+|---|---|
+| ![Cyber Attacks](screenshots/cyber_attacks.png) | ![Dark Web Watch](screenshots/timeline.png) |
+
+| Live Threat Feeds
+|---|---|
+| ![Cyber Attacks](screenshots/live_feeds.png) 
+
 
 | About |
 |---|
